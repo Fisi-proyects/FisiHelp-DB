@@ -1,0 +1,29 @@
+{
+  "name": "fisihelp-db",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fisi-proyects/FisiHelp-DB.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fisi-proyects/FisiHelp-DB/issues"
+  },
+  "homepage": "https://github.com/Fisi-proyects/FisiHelp-DB#readme",
+  "dependencies": {
+    "@prisma/client": "^5.20.0",
+    "csv-parse": "^5.5.6",
+    "csv-parser": "^3.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.20.0"
+  }
+}

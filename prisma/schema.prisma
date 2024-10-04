@@ -1,0 +1,77 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Alumno {
+  id           String    @id @default(cuid())
+  nombre       String
+  apellido_pat String
+  apellido_mat String
+  email        String
+  DNI          String    @unique
+  ponderado    Float
+  observado    Boolean
+  reserva      reserva[]
+}
+
+model Curso {
+  id              String @id @default(cuid())
+  codigo          String @unique
+  creditos        Int
+  cupos           Int
+  matriculados    Int
+  aprobados       Int
+  desaprobados    Int
+  id_salon        Int
+  prerequisito    String
+  curso_posterior String
+}
+
+model espacio_servicio {
+  id        String    @id @default(cuid())
+  nombre    String
+  capacidad Int
+  aparato   aparato[]
+  reserva   reserva[]
+}
+
+model reserva {
+  id                  String           @id @default(cuid())
+  id_espacio_servicio String
+  id_alumno           String
+  hora_inicio         DateTime
+  hora_fin            DateTime
+  estado              String
+  descripcion         String
+  alumno              Alumno           @relation(fields: [id_alumno], references: [id])
+  espacio_servicio    espacio_servicio @relation(fields: [id_espacio_servicio], references: [id])
+}
+
+model aparato {
+  id                  String           @id @default(cuid())
+  nombre              String
+  descripcion         String
+  id_espacio_servicio String
+  espacio_servicio    espacio_servicio @relation(fields: [id_espacio_servicio], references: [id])
+}
+
+model worker{
+  id        String @id @default(cuid())
+  nombre    String
+  apellido  String
+  email     String
+  DNI       String @unique
+  password  String
+  cargo      String
+}
