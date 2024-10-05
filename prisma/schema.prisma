@@ -14,7 +14,7 @@ datasource db {
 }
 
 model Alumno {
-  id           String    @id @default(cuid())
+  id           Int    @id @default(autoincrement())
   nombre       String
   apellido_pat String
   apellido_mat String
@@ -26,7 +26,7 @@ model Alumno {
 }
 
 model Curso {
-  id              String @id @default(cuid())
+  id              Int    @id @default(autoincrement())
   codigo          String @unique
   creditos        Int
   cupos           Int
@@ -39,7 +39,7 @@ model Curso {
 }
 
 model espacio_servicio {
-  id        String    @id @default(cuid())
+  id        Int    @id @default(autoincrement())
   nombre    String
   capacidad Int
   aparato   aparato[]
@@ -47,9 +47,9 @@ model espacio_servicio {
 }
 
 model reserva {
-  id                  String           @id @default(cuid())
-  id_espacio_servicio String
-  id_alumno           String
+  id                  Int    @id @default(autoincrement())
+  id_espacio_servicio Int
+  id_alumno           Int
   hora_inicio         DateTime
   hora_fin            DateTime
   estado              String
@@ -59,15 +59,15 @@ model reserva {
 }
 
 model aparato {
-  id                  String           @id @default(cuid())
+  id                  Int    @id @default(autoincrement())
   nombre              String
   descripcion         String
-  id_espacio_servicio String
+  id_espacio_servicio Int
   espacio_servicio    espacio_servicio @relation(fields: [id_espacio_servicio], references: [id])
 }
 
 model worker{
-  id        String @id @default(cuid())
+  id        Int    @id @default(autoincrement())
   nombre    String
   apellido  String
   email     String
