@@ -61,7 +61,7 @@ model reserva {
 }
 
 model aparato {
-  id                  String           @id @default(cuid())
+  id                  Int           @id @default(cuid())
   nombre              String
   descripcion         String
   id_espacio_servicio Int
@@ -69,7 +69,7 @@ model aparato {
 }
 
 model worker{
-  id        String @id @default(cuid())
+  id        Int @id @default(cuid())
   nombre    String
   apellido  String
   email     String
@@ -78,3 +78,13 @@ model worker{
   cargo      String
 }
 
+model reserva_unayoe {
+  id          Int   @id @default(cuid())
+  id_alumno   String
+  hora_inicio DateTime
+  hora_fin    DateTime
+  descripcion String
+  alumno      Alumno   @relation(fields: [id_alumno], references: [id])
+
+  @@index([id_alumno], name: "idx_id_alumno")
+}
